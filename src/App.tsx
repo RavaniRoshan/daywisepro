@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
+import FloatingNav from './components/FloatingNav';
 import Hero from './components/Hero';
 import Features from './components/Features';
 import HowItWorks from './components/HowItWorks';
@@ -17,6 +18,7 @@ const Homepage = () => {
   return (
     <div className="min-h-screen bg-white">
       <Header />
+      <FloatingNav />
       <Hero />
       <Features />
       <HowItWorks />

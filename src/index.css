@@ -101,9 +101,34 @@ html {
   @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-2;
 }
 
+/* Smooth scroll offset for floating nav */
+html {
+  scroll-padding-top: 120px;
+}
+
+/* Enhanced floating nav styles */
+.floating-nav-shadow {
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
 /* Responsive utilities */
 @media (max-width: 768px) {
   .mobile-center {
     text-align: center;
+  }
+  
+  /* Hide floating nav on mobile, keep original header */
+  .floating-nav-mobile-hide {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  /* Hide original header on desktop when floating nav is active */
+  .original-header-hide {
+    display: none;
   }
 }

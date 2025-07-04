@@ -15,7 +15,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <header className={`md:hidden fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
       isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -28,34 +28,9 @@ const Header = () => {
             <span className="ml-3 text-2xl font-bold text-gray-900">DayWise</span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
-            <a href="#features" className="text-gray-700 hover:text-[#2D5BFF] transition-colors">Features</a>
-            <a href="#how-it-works" className="text-gray-700 hover:text-[#2D5BFF] transition-colors">How it Works</a>
-            <a href="#pricing" className="text-gray-700 hover:text-[#2D5BFF] transition-colors">Pricing</a>
-            <a href="#testimonials" className="text-gray-700 hover:text-[#2D5BFF] transition-colors">Reviews</a>
-            <a href="#download" className="text-gray-700 hover:text-[#2D5BFF] transition-colors">Download</a>
-          </nav>
-
-          {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <Link 
-              to="/login"
-              className="text-gray-700 hover:text-[#2D5BFF] transition-colors font-medium"
-            >
-              Sign In
-            </Link>
-            <Link 
-              to="/signup"
-              className="btn-primary"
-            >
-              Get Started Free
-            </Link>
-          </div>
-
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2"
+            className="p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -64,7 +39,7 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="lg:hidden py-6 border-t border-gray-200">
+          <div className="py-6 border-t border-gray-200 bg-white/95 backdrop-blur-md">
             <nav className="flex flex-col space-y-4">
               <a href="#features" className="text-gray-700 hover:text-[#2D5BFF] transition-colors">Features</a>
               <a href="#how-it-works" className="text-gray-700 hover:text-[#2D5BFF] transition-colors">How it Works</a>
