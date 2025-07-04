@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Features from './components/Features';
@@ -8,8 +9,11 @@ import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import Download from './components/Download';
 import Footer from './components/Footer';
+import Login from './components/Auth/Login';
+import Signup from './components/Auth/Signup';
 
-function App() {
+// Homepage Component
+const Homepage = () => {
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -22,6 +26,18 @@ function App() {
       <Download />
       <Footer />
     </div>
+  );
+};
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </Router>
   );
 }
 

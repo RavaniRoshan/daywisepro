@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, Play, Star, Users, Calendar, Brain, BarChart3, FolderSync as Sync } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -34,10 +35,10 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <button className="btn-primary group">
+              <Link to="/signup" className="btn-primary group">
                 Get Started Free
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </Link>
               <button className="btn-secondary group">
                 <Play className="w-5 h-5 mr-2" />
                 Watch Demo

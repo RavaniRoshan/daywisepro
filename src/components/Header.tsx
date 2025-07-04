@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown, Calendar } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,12 +21,12 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <div className="flex items-center">
+          <Link to="/" className="flex items-center">
             <div className="w-10 h-10 bg-[#2D5BFF] rounded-xl flex items-center justify-center">
               <Calendar className="w-6 h-6 text-white" />
             </div>
             <span className="ml-3 text-2xl font-bold text-gray-900">DayWise</span>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
@@ -38,12 +39,18 @@ const Header = () => {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center space-x-4">
-            <button className="text-gray-700 hover:text-[#2D5BFF] transition-colors font-medium">
+            <Link 
+              to="/login"
+              className="text-gray-700 hover:text-[#2D5BFF] transition-colors font-medium"
+            >
               Sign In
-            </button>
-            <button className="btn-primary">
+            </Link>
+            <Link 
+              to="/signup"
+              className="btn-primary"
+            >
               Get Started Free
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -65,12 +72,18 @@ const Header = () => {
               <a href="#testimonials" className="text-gray-700 hover:text-[#2D5BFF] transition-colors">Reviews</a>
               <a href="#download" className="text-gray-700 hover:text-[#2D5BFF] transition-colors">Download</a>
               <div className="pt-4 border-t border-gray-200">
-                <button className="w-full text-left text-gray-700 hover:text-[#2D5BFF] transition-colors mb-4">
+                <Link 
+                  to="/login"
+                  className="w-full text-left text-gray-700 hover:text-[#2D5BFF] transition-colors mb-4 block"
+                >
                   Sign In
-                </button>
-                <button className="w-full btn-primary">
+                </Link>
+                <Link 
+                  to="/signup"
+                  className="w-full btn-primary block text-center"
+                >
                   Get Started Free
-                </button>
+                </Link>
               </div>
             </nav>
           </div>
