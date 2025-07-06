@@ -130,14 +130,14 @@ const FloatingNavbar = () => {
       variants={navbarVariants}
       animate={isVisible ? "visible" : "hidden"}
       initial="visible"
-      className="fixed top-4 left-1/2 transform -translate-x-1/2 z-[9999] w-full max-w-5xl px-4 sm:px-6"
+      className="fixed top-4 left-0 right-0 z-[9999] flex justify-center px-4 sm:px-6"
       style={{ willChange: 'transform, opacity' }}
     >
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className={`relative rounded-2xl border transition-all duration-500 ${
+        className={`relative w-full max-w-5xl rounded-2xl border transition-all duration-500 ${
           scrolled 
             ? 'bg-black/90 backdrop-blur-2xl shadow-2xl border-white/20' 
             : 'bg-black/60 backdrop-blur-xl shadow-xl border-white/10'
@@ -152,12 +152,12 @@ const FloatingNavbar = () => {
         <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-accent-primary/10 via-accent-secondary/10 to-accent-tertiary/10"></div>
         
         <div className="relative px-4 sm:px-6 py-3 sm:py-4">
-          <div className="flex items-center justify-between">
-            {/* Enhanced Logo */}
+          <div className="flex items-center justify-between w-full">
+            {/* Enhanced Logo - Left Side */}
             <motion.button
               variants={itemVariants}
               onClick={() => scrollToSection('hero')}
-              className="flex items-center space-x-2 sm:space-x-3 group"
+              className="flex items-center space-x-2 sm:space-x-3 group flex-shrink-0"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -173,14 +173,14 @@ const FloatingNavbar = () => {
               </span>
             </motion.button>
 
-            {/* Enhanced Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+            {/* Enhanced Desktop Navigation - Center */}
+            <div className="hidden lg:flex items-center justify-center space-x-6 xl:space-x-8 flex-1">
               {navItems.map((item, index) => (
                 <motion.button
                   key={item.label}
                   variants={itemVariants}
                   onClick={item.action}
-                  className="relative text-gray-300 hover:text-white font-medium transition-all duration-300 group px-2 py-1"
+                  className="relative text-gray-300 hover:text-white font-medium transition-all duration-300 group px-3 py-2"
                   whileHover={{ y: -3 }}
                   whileTap={{ y: 0 }}
                 >
@@ -197,7 +197,10 @@ const FloatingNavbar = () => {
                   />
                 </motion.button>
               ))}
-              
+            </div>
+            
+            {/* Resume Button - Right Side */}
+            <div className="hidden lg:flex items-center flex-shrink-0">
               <motion.button
                 variants={itemVariants}
                 onClick={downloadResume}
@@ -219,7 +222,7 @@ const FloatingNavbar = () => {
             <motion.button
               variants={itemVariants}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 sm:p-3 text-gray-300 hover:text-white transition-colors duration-300 rounded-lg hover:bg-white/10"
+              className="lg:hidden p-2 sm:p-3 text-gray-300 hover:text-white transition-colors duration-300 rounded-lg hover:bg-white/10 flex-shrink-0"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
