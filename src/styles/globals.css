@@ -26,7 +26,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 120px;
+  scroll-padding-top: 140px; /* Increased for better navbar positioning */
 }
 
 body {
@@ -36,9 +36,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(var(--color-primary));
   color: rgb(var(--color-text-primary));
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
-/* Custom scrollbar */
+/* Enhanced Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -48,15 +49,15 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(var(--color-accent-primary));
+  background: linear-gradient(180deg, rgb(var(--color-accent-primary)), rgb(var(--color-accent-secondary)));
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(var(--color-accent-secondary));
+  background: linear-gradient(180deg, rgb(var(--color-accent-secondary)), rgb(var(--color-accent-tertiary)));
 }
 
-/* Focus styles for accessibility */
+/* Enhanced Focus styles for accessibility */
 *:focus {
   outline: 2px solid rgb(var(--color-accent-primary));
   outline-offset: 2px;
@@ -69,7 +70,7 @@ a:focus {
   outline-offset: 2px;
 }
 
-/* Custom animations */
+/* Enhanced Custom animations */
 @keyframes slide-in {
   from {
     transform: translateX(100%);
@@ -110,6 +111,24 @@ a:focus {
   }
 }
 
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
 .animate-slide-in {
   animation: slide-in 0.3s ease-out;
 }
@@ -126,7 +145,18 @@ a:focus {
   animation: float 3s ease-in-out infinite;
 }
 
-/* Component styles */
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Enhanced Component styles */
 @layer components {
   .container {
     @apply max-w-7xl mx-auto;
@@ -159,7 +189,7 @@ a:focus {
   }
 
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-2xl hover:-translate-y-2;
+    @apply transition-all duration-500 hover:shadow-2xl hover:-translate-y-3;
   }
 
   .gradient-text {
@@ -170,9 +200,32 @@ a:focus {
   .section-padding {
     @apply py-24 px-6;
   }
+
+  /* Enhanced glass effect */
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-strong {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  /* Line clamp utility */
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
 
-/* Utility classes */
+/* Enhanced Utility classes */
 @layer utilities {
   .bg-primary {
     background-color: rgb(var(--color-primary));
@@ -205,9 +258,30 @@ a:focus {
   .border-secondary {
     border-color: rgb(var(--color-secondary));
   }
+
+  /* Performance optimizations */
+  .will-change-transform {
+    will-change: transform;
+  }
+
+  .will-change-opacity {
+    will-change: opacity;
+  }
+
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
 }
 
-/* Responsive design improvements */
+/* Enhanced Responsive design improvements */
+@media (max-width: 1024px) {
+  html {
+    scroll-padding-top: 120px;
+  }
+}
+
 @media (max-width: 768px) {
   .container {
     @apply px-4;
@@ -216,17 +290,29 @@ a:focus {
   html {
     scroll-padding-top: 100px;
   }
+
+  /* Optimize animations for mobile */
+  .card-hover {
+    @apply hover:-translate-y-1;
+  }
 }
 
-/* High contrast mode support */
+@media (max-width: 640px) {
+  html {
+    scroll-padding-top: 90px;
+  }
+}
+
+/* Enhanced High contrast mode support */
 @media (prefers-contrast: high) {
   :root {
     --color-accent-primary: 124 58 237;
     --color-accent-secondary: 168 85 247;
+    --color-accent-tertiary: 219 39 119;
   }
 }
 
-/* Reduced motion support */
+/* Enhanced Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -236,6 +322,10 @@ a:focus {
   
   html {
     scroll-behavior: auto;
+  }
+
+  .card-hover {
+    @apply hover:shadow-lg hover:translate-y-0;
   }
 }
 
@@ -248,5 +338,31 @@ a:focus {
   body {
     background: white !important;
     color: black !important;
+  }
+
+  .glass,
+  .glass-strong {
+    background: white !important;
+    backdrop-filter: none !important;
+    border: 1px solid #ccc !important;
+  }
+}
+
+/* Enhanced cross-browser compatibility */
+@supports not (backdrop-filter: blur(16px)) {
+  .glass {
+    background: rgba(31, 31, 31, 0.9);
+  }
+  
+  .glass-strong {
+    background: rgba(18, 18, 18, 0.95);
+  }
+}
+
+/* Safari-specific fixes */
+@supports (-webkit-appearance: none) {
+  .glass,
+  .glass-strong {
+    -webkit-backdrop-filter: blur(16px);
   }
 }

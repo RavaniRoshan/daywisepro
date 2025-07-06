@@ -35,7 +35,7 @@ const FloatingNavbar = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const offset = 100;
+      const offset = 120; // Increased offset for better positioning
       const elementPosition = element.offsetTop - offset;
       window.scrollTo({
         top: elementPosition,
@@ -63,41 +63,42 @@ const FloatingNavbar = () => {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.3,
-        ease: "easeOut"
+        duration: 0.4,
+        ease: [0.25, 0.46, 0.45, 0.94]
       }
     },
     hidden: {
-      y: -100,
+      y: -120,
       opacity: 0,
       transition: {
         duration: 0.3,
-        ease: "easeIn"
+        ease: [0.25, 0.46, 0.45, 0.94]
       }
     }
   };
 
   const containerVariants = {
-    hidden: { opacity: 0, y: -20 },
+    hidden: { opacity: 0, y: -30 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
-        ease: "easeOut",
-        staggerChildren: 0.1
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94],
+        staggerChildren: 0.1,
+        delayChildren: 0.2
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: -10 },
+    hidden: { opacity: 0, y: -20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.4,
-        ease: "easeOut"
+        duration: 0.5,
+        ease: [0.25, 0.46, 0.45, 0.94]
       }
     }
   };
@@ -107,16 +108,17 @@ const FloatingNavbar = () => {
       opacity: 0,
       height: 0,
       transition: {
-        duration: 0.3,
-        ease: "easeInOut"
+        duration: 0.4,
+        ease: [0.25, 0.46, 0.45, 0.94],
+        when: "afterChildren"
       }
     },
     open: {
       opacity: 1,
       height: "auto",
       transition: {
-        duration: 0.3,
-        ease: "easeInOut",
+        duration: 0.4,
+        ease: [0.25, 0.46, 0.45, 0.94],
         staggerChildren: 0.1,
         delayChildren: 0.1
       }
@@ -128,55 +130,70 @@ const FloatingNavbar = () => {
       variants={navbarVariants}
       animate={isVisible ? "visible" : "hidden"}
       initial="visible"
-      className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-4xl px-6"
+      className="fixed top-4 left-1/2 transform -translate-x-1/2 z-[9999] w-full max-w-5xl px-4 sm:px-6"
+      style={{ willChange: 'transform, opacity' }}
     >
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className={`relative rounded-2xl border border-white/10 transition-all duration-300 ${
+        className={`relative rounded-2xl border transition-all duration-500 ${
           scrolled 
-            ? 'bg-black/80 backdrop-blur-xl shadow-2xl' 
-            : 'bg-black/40 backdrop-blur-md shadow-lg'
+            ? 'bg-black/90 backdrop-blur-2xl shadow-2xl border-white/20' 
+            : 'bg-black/60 backdrop-blur-xl shadow-xl border-white/10'
         }`}
+        style={{ 
+          backdropFilter: scrolled ? 'blur(24px) saturate(180%)' : 'blur(16px) saturate(150%)',
+          WebkitBackdropFilter: scrolled ? 'blur(24px) saturate(180%)' : 'blur(16px) saturate(150%)'
+        }}
       >
-        {/* Gradient border effect */}
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-accent-primary/20 via-accent-secondary/20 to-accent-tertiary/20 opacity-50 blur-sm"></div>
+        {/* Enhanced gradient border effect */}
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-accent-primary/30 via-accent-secondary/30 to-accent-tertiary/30 opacity-60 blur-sm -z-10"></div>
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-accent-primary/10 via-accent-secondary/10 to-accent-tertiary/10"></div>
         
-        <div className="relative px-6 py-4">
+        <div className="relative px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between">
-            {/* Logo */}
+            {/* Enhanced Logo */}
             <motion.button
               variants={itemVariants}
               onClick={() => scrollToSection('hero')}
-              className="flex items-center space-x-2 group"
+              className="flex items-center space-x-2 sm:space-x-3 group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="w-8 h-8 bg-gradient-to-r from-accent-primary to-accent-secondary rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">JD</span>
-              </div>
-              <span className="text-white font-bold text-xl group-hover:text-accent-primary transition-colors">
+              <motion.div 
+                className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-accent-primary via-accent-secondary to-accent-tertiary rounded-xl flex items-center justify-center shadow-lg"
+                whileHover={{ rotate: 5 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <span className="text-white font-bold text-sm sm:text-base">JD</span>
+              </motion.div>
+              <span className="text-white font-bold text-lg sm:text-xl group-hover:text-accent-primary transition-colors duration-300">
                 John Doe
               </span>
             </motion.button>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
+            {/* Enhanced Desktop Navigation */}
+            <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
               {navItems.map((item, index) => (
                 <motion.button
                   key={item.label}
                   variants={itemVariants}
                   onClick={item.action}
-                  className="relative text-gray-300 hover:text-white font-medium transition-colors group"
-                  whileHover={{ y: -2 }}
+                  className="relative text-gray-300 hover:text-white font-medium transition-all duration-300 group px-2 py-1"
+                  whileHover={{ y: -3 }}
                   whileTap={{ y: 0 }}
                 >
-                  {item.label}
+                  <span className="relative z-10">{item.label}</span>
                   <motion.div
-                    className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-accent-primary to-accent-secondary"
-                    whileHover={{ width: "100%" }}
+                    className="absolute inset-0 bg-gradient-to-r from-accent-primary/20 to-accent-secondary/20 rounded-lg opacity-0"
+                    whileHover={{ opacity: 1 }}
                     transition={{ duration: 0.3 }}
+                  />
+                  <motion.div
+                    className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-accent-primary to-accent-secondary rounded-full"
+                    whileHover={{ width: "100%" }}
+                    transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
                   />
                 </motion.button>
               ))}
@@ -184,21 +201,25 @@ const FloatingNavbar = () => {
               <motion.button
                 variants={itemVariants}
                 onClick={downloadResume}
-                className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-accent-primary to-accent-secondary text-white rounded-lg font-medium hover:shadow-lg transition-all group"
-                whileHover={{ scale: 1.05, y: -2 }}
+                className="flex items-center space-x-2 px-4 sm:px-5 py-2 sm:py-2.5 bg-gradient-to-r from-accent-primary to-accent-secondary text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 group"
+                whileHover={{ 
+                  scale: 1.05, 
+                  y: -3,
+                  boxShadow: "0 20px 25px -5px rgba(99, 102, 241, 0.4)"
+                }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Download className="w-4 h-4" />
-                <span>Resume</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <span className="text-sm sm:text-base">Resume</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
               </motion.button>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Enhanced Mobile Menu Button */}
             <motion.button
               variants={itemVariants}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 text-gray-300 hover:text-white transition-colors"
+              className="lg:hidden p-2 sm:p-3 text-gray-300 hover:text-white transition-colors duration-300 rounded-lg hover:bg-white/10"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -206,29 +227,29 @@ const FloatingNavbar = () => {
                 {isMenuOpen ? (
                   <motion.div
                     key="close"
-                    initial={{ rotate: -90, opacity: 0 }}
+                    initial={{ rotate: -180, opacity: 0 }}
                     animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
+                    exit={{ rotate: 180, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
                   >
-                    <X className="w-6 h-6" />
+                    <X className="w-5 h-5 sm:w-6 sm:h-6" />
                   </motion.div>
                 ) : (
                   <motion.div
                     key="menu"
-                    initial={{ rotate: 90, opacity: 0 }}
+                    initial={{ rotate: 180, opacity: 0 }}
                     animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
+                    exit={{ rotate: -180, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
                   >
-                    <Menu className="w-6 h-6" />
+                    <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
                   </motion.div>
                 )}
               </AnimatePresence>
             </motion.button>
           </div>
 
-          {/* Mobile Menu */}
+          {/* Enhanced Mobile Menu */}
           <AnimatePresence>
             {isMenuOpen && (
               <motion.div
@@ -236,16 +257,18 @@ const FloatingNavbar = () => {
                 initial="closed"
                 animate="open"
                 exit="closed"
-                className="md:hidden mt-4 pt-4 border-t border-white/10"
+                className="lg:hidden mt-4 pt-4 border-t border-white/20"
+                style={{ overflow: 'hidden' }}
               >
-                <div className="flex flex-col space-y-4">
+                <div className="flex flex-col space-y-3">
                   {navItems.map((item, index) => (
                     <motion.button
                       key={item.label}
                       variants={itemVariants}
                       onClick={item.action}
-                      className="text-left text-gray-300 hover:text-white font-medium transition-colors py-2"
-                      whileHover={{ x: 10 }}
+                      className="text-left text-gray-300 hover:text-white font-medium transition-all duration-300 py-2 px-3 rounded-lg hover:bg-white/10"
+                      whileHover={{ x: 10, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+                      whileTap={{ scale: 0.95 }}
                     >
                       {item.label}
                     </motion.button>
@@ -253,7 +276,7 @@ const FloatingNavbar = () => {
                   <motion.button
                     variants={itemVariants}
                     onClick={downloadResume}
-                    className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-accent-primary to-accent-secondary text-white rounded-lg font-medium w-fit"
+                    className="flex items-center space-x-2 px-4 py-2.5 bg-gradient-to-r from-accent-primary to-accent-secondary text-white rounded-lg font-medium w-fit shadow-lg mt-2"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
