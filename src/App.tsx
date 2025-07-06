@@ -1,45 +1,45 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from './contexts/ThemeContext';
+import { NotificationProvider } from './contexts/NotificationContext';
 import Header from './components/Header';
-import FloatingNav from './components/FloatingNav';
 import Hero from './components/Hero';
-import Features from './components/Features';
-import HowItWorks from './components/HowItWorks';
-import Pricing from './components/Pricing';
-import Testimonials from './components/Testimonials';
-import FAQ from './components/FAQ';
-import Download from './components/Download';
+import About from './components/About';
+import Projects from './components/Projects';
+import Contact from './components/Contact';
 import Footer from './components/Footer';
-import Login from './components/Auth/Login';
-import Signup from './components/Auth/Signup';
+import Newsletter from './components/Newsletter';
+import ScrollToTop from './components/ScrollToTop';
+import './styles/globals.css';
 
-// Homepage Component
-const Homepage = () => {
+const Portfolio = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-primary text-white">
       <Header />
-      <FloatingNav />
-      <Hero />
-      <Features />
-      <HowItWorks />
-      <Pricing />
-      <Testimonials />
-      <FAQ />
-      <Download />
+      <main>
+        <Hero />
+        <About />
+        <Projects />
+        <Newsletter />
+        <Contact />
+      </main>
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-      </Routes>
-    </Router>
+    <ThemeProvider>
+      <NotificationProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Portfolio />} />
+          </Routes>
+        </Router>
+      </NotificationProvider>
+    </ThemeProvider>
   );
 }
 
