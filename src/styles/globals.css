@@ -17,19 +17,6 @@
   --color-text-muted: 156 163 175;
 }
 
-/* Light theme variables (for future use) */
-.light {
-  --color-primary: 255 255 255;
-  --color-secondary: 249 250 251;
-  --color-interactive: 243 244 246;
-  --color-accent-primary: 99 102 241;
-  --color-accent-secondary: 139 92 246;
-  --color-accent-tertiary: 236 72 153;
-  --color-text-primary: 17 24 39;
-  --color-text-secondary: 55 65 81;
-  --color-text-muted: 107 114 128;
-}
-
 /* Base styles */
 * {
   margin: 0;
@@ -39,7 +26,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 100px;
+  scroll-padding-top: 120px;
 }
 
 body {
@@ -114,6 +101,15 @@ a:focus {
   }
 }
 
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px); 
+  }
+  50% { 
+    transform: translateY(-10px); 
+  }
+}
+
 .animate-slide-in {
   animation: slide-in 0.3s ease-out;
 }
@@ -124,6 +120,10 @@ a:focus {
 
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
 }
 
 /* Component styles */
@@ -214,7 +214,7 @@ a:focus {
   }
   
   html {
-    scroll-padding-top: 80px;
+    scroll-padding-top: 100px;
   }
 }
 

@@ -1,8 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ThemeProvider } from './contexts/ThemeContext';
 import { NotificationProvider } from './contexts/NotificationContext';
-import Header from './components/Header';
+import FloatingNavbar from './components/FloatingNavbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Projects from './components/Projects';
@@ -16,7 +15,7 @@ import './styles/globals.css';
 const Portfolio = () => {
   return (
     <div className="min-h-screen bg-primary text-white">
-      <Header />
+      <FloatingNavbar />
       <main>
         <Hero />
         <About />
@@ -32,16 +31,14 @@ const Portfolio = () => {
 
 function App() {
   return (
-    <ThemeProvider>
-      <NotificationProvider>
-        <Router>
-          <Routes>
-            <Route path="/" element={<Portfolio />} />
-          </Routes>
-        </Router>
-        <NotificationToast />
-      </NotificationProvider>
-    </ThemeProvider>
+    <NotificationProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Portfolio />} />
+        </Routes>
+      </Router>
+      <NotificationToast />
+    </NotificationProvider>
   );
 }
 
