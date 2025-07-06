@@ -10,6 +10,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Newsletter from './components/Newsletter';
 import ScrollToTop from './components/ScrollToTop';
+import NotificationToast from './components/NotificationToast';
 import './styles/globals.css';
 
 const Portfolio = () => {
@@ -38,6 +39,7 @@ function App() {
             <Route path="/" element={<Portfolio />} />
           </Routes>
         </Router>
+        <NotificationToast />
       </NotificationProvider>
     </ThemeProvider>
   );
