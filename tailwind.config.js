@@ -5,13 +5,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: 'var(--color-primary)',
-        secondary: 'var(--color-secondary)',
-        interactive: 'var(--color-interactive)',
+        primary: 'rgb(var(--color-primary) / <alpha-value>)',
+        secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
+        interactive: 'rgb(var(--color-interactive) / <alpha-value>)',
         accent: {
-          primary: 'var(--color-accent-primary)',
-          secondary: 'var(--color-accent-secondary)',
-          tertiary: 'var(--color-accent-tertiary)',
+          primary: 'rgb(var(--color-accent-primary) / <alpha-value>)',
+          secondary: 'rgb(var(--color-accent-secondary) / <alpha-value>)',
+          tertiary: 'rgb(var(--color-accent-tertiary) / <alpha-value>)',
         },
       },
       fontFamily: {

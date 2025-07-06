@@ -6,28 +6,28 @@
 
 /* CSS Custom Properties for Dark Theme */
 :root {
-  --color-primary: #121212;
-  --color-secondary: #1F1F1F;
-  --color-interactive: #2D2D2D;
-  --color-accent-primary: #6366F1;
-  --color-accent-secondary: #8B5CF6;
-  --color-accent-tertiary: #EC4899;
-  --color-text-primary: #FFFFFF;
-  --color-text-secondary: #D1D5DB;
-  --color-text-muted: #9CA3AF;
+  --color-primary: 18 18 18;
+  --color-secondary: 31 31 31;
+  --color-interactive: 45 45 45;
+  --color-accent-primary: 99 102 241;
+  --color-accent-secondary: 139 92 246;
+  --color-accent-tertiary: 236 72 153;
+  --color-text-primary: 255 255 255;
+  --color-text-secondary: 209 213 219;
+  --color-text-muted: 156 163 175;
 }
 
 /* Light theme variables (for future use) */
 .light {
-  --color-primary: #FFFFFF;
-  --color-secondary: #F9FAFB;
-  --color-interactive: #F3F4F6;
-  --color-accent-primary: #6366F1;
-  --color-accent-secondary: #8B5CF6;
-  --color-accent-tertiary: #EC4899;
-  --color-text-primary: #111827;
-  --color-text-secondary: #374151;
-  --color-text-muted: #6B7280;
+  --color-primary: 255 255 255;
+  --color-secondary: 249 250 251;
+  --color-interactive: 243 244 246;
+  --color-accent-primary: 99 102 241;
+  --color-accent-secondary: 139 92 246;
+  --color-accent-tertiary: 236 72 153;
+  --color-text-primary: 17 24 39;
+  --color-text-secondary: 55 65 81;
+  --color-text-muted: 107 114 128;
 }
 
 /* Base styles */
@@ -47,8 +47,8 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--color-primary);
-  color: var(--color-text-primary);
+  background-color: rgb(var(--color-primary));
+  color: rgb(var(--color-text-primary));
 }
 
 /* Custom scrollbar */
@@ -57,28 +57,28 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-secondary);
+  background: rgb(var(--color-secondary));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-accent-primary);
+  background: rgb(var(--color-accent-primary));
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent-secondary);
+  background: rgb(var(--color-accent-secondary));
 }
 
 /* Focus styles for accessibility */
 *:focus {
-  outline: 2px solid var(--color-accent-primary);
+  outline: 2px solid rgb(var(--color-accent-primary));
   outline-offset: 2px;
 }
 
 /* Button focus styles */
 button:focus,
 a:focus {
-  outline: 2px solid var(--color-accent-primary);
+  outline: 2px solid rgb(var(--color-accent-primary));
   outline-offset: 2px;
 }
 
@@ -175,35 +175,35 @@ a:focus {
 /* Utility classes */
 @layer utilities {
   .bg-primary {
-    background-color: var(--color-primary);
+    background-color: rgb(var(--color-primary));
   }
 
   .bg-secondary {
-    background-color: var(--color-secondary);
+    background-color: rgb(var(--color-secondary));
   }
 
   .bg-interactive {
-    background-color: var(--color-interactive);
+    background-color: rgb(var(--color-interactive));
   }
 
   .text-accent-primary {
-    color: var(--color-accent-primary);
+    color: rgb(var(--color-accent-primary));
   }
 
   .text-accent-secondary {
-    color: var(--color-accent-secondary);
+    color: rgb(var(--color-accent-secondary));
   }
 
   .text-accent-tertiary {
-    color: var(--color-accent-tertiary);
+    color: rgb(var(--color-accent-tertiary));
   }
 
   .border-accent-primary {
-    border-color: var(--color-accent-primary);
+    border-color: rgb(var(--color-accent-primary));
   }
 
   .border-secondary {
-    border-color: var(--color-secondary);
+    border-color: rgb(var(--color-secondary));
   }
 }
 
@@ -221,8 +221,8 @@ a:focus {
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   :root {
-    --color-accent-primary: #7C3AED;
-    --color-accent-secondary: #A855F7;
+    --color-accent-primary: 124 58 237;
+    --color-accent-secondary: 168 85 247;
   }
 }
 
